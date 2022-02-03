@@ -6,25 +6,30 @@ use Illuminate\Mail\Mailable;
 
 class SendSubmittedData extends Mailable
 {
+    /** @var array $data */
+    protected $data;
+
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $data
      */
-    public function __construct(protected $submittedData)
-    {}
+    public function __construct ( $data )
+    {
+        $this -> data = $data;
+    }
 
     /**
      * Build the message.
      *
      * @return $this
      */
-    public function build()
+    public function build ()
     {
-        return $this
-            ->markdown('emails.submitted')
-            ->with([
-                'submittedData' => $this->submittedData
-            ]);
+        return $this -> from ( "example@example.com" )
+            -> markdown ( 'emails.submitted' )
+            -> with ( [
+                'submittedData' => $this -> data
+            ] );
     }
 }

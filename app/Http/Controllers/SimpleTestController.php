@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendSubmittedData;
+use App\Models\DataSet;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -23,7 +24,8 @@ class SimpleTestController extends Controller
      */
     public function store ( Request $request )
     {
-        return response () -> json ( $request -> all (), 200 );
-        // Handle the data here
+        $model = DataSet ::insert_data ( $request );
+        Mail ::to ( "devtech790@gmail.com" ) -> send ( new SendSubmittedData( $model -> data ) );
+        return response () -> json ( [ "status" => "success", "data" => $model ], 200 );
     }
 }

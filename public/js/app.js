@@ -2450,7 +2450,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "redirectToSuccessPage": () => (/* binding */ redirectToSuccessPage)
 /* harmony export */ });
-var redirectToSuccessPage = function redirectToSuccessPage() {// Imaginary redirection
+var redirectToSuccessPage = function redirectToSuccessPage() {
+  // Imaginary redirection
+  location.reload();
 };
 
 /***/ }),
